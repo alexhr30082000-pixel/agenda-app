@@ -1,100 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Agenda de Contactos</title>
-<link rel="stylesheet" href="style.css">
-
-<style>
-body{
-  margin:0;
-  font-family:Arial;
-}
-
-/* LOGIN CENTRADO */
-.auth{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-  background:#f2f2f2;
-}
-
-.box{
-  background:white;
-  padding:25px;
-  border-radius:10px;
-  width:300px;
-  text-align:center;
-  box-shadow:0 0 10px rgba(0,0,0,0.2);
-}
-
-.box input{
-  width:100%;
-  padding:10px;
-  margin:8px 0;
-}
-
-.box button{
-  width:100%;
-  padding:10px;
-  margin-top:10px;
-}
-
-.link{
-  color:blue;
-  cursor:pointer;
-  display:block;
-  margin-top:10px;
-}
-</style>
+  <meta charset="UTF-8">
+  <title>Agenda de Contactos</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<!-- LOGIN / REGISTRO -->
-<div class="auth" id="auth">
+  
 
-  <div class="box">
-
-    <!-- LOGIN -->
-    <div id="loginView">
-      <h2>🔐 Iniciar Sesión</h2>
-      <input type="text" id="loginUser" placeholder="Usuario">
-      <input type="password" id="loginPass" placeholder="Contraseña">
-      <button onclick="login()">Ingresar</button>
-      <span class="link" onclick="showRegister()">Crear cuenta</span>
-      <p id="loginError" style="color:red;"></p>
-    </div>
-
-    <!-- REGISTRO -->
-    <div id="registerView" style="display:none;">
-      <h2>📝 Registrarse</h2>
-      <input type="text" id="regUser" placeholder="Usuario">
-      <input type="password" id="regPass" placeholder="Contraseña">
-      <button onclick="register()">Registrar</button>
-      <span class="link" onclick="showLogin()">Ya tengo cuenta</span>
-      <p id="regError" style="color:red;"></p>
-    </div>
-
-  </div>
-
-</div>
-
-<!-- APP ORIGINAL -->
-<div class="app" id="app" style="display:none;">
+<div class="app">
 
   <aside class="sidebar">
     <h2>📒 Agenda</h2>
     <button id="btnRegistro">➕ Registrar</button>
     <button id="btnAdmin">📋 Administrar</button>
-    <button onclick="logout()">🚪 Cerrar sesión</button>
   </aside>
 
   <main class="contenido">
 
+    <!-- REGISTRO -->
     <section id="registro" class="seccion activa">
       <h2>Registrar Contacto</h2>
+
       <form id="formulario">
         <input type="text" id="nombre" placeholder="Nombre completo" required>
         <input type="text" id="telefono" placeholder="Teléfono" required>
@@ -104,6 +32,7 @@ body{
       </form>
     </section>
 
+    <!-- ADMIN -->
     <section id="admin" class="seccion">
       <h2>Administrar Contactos</h2>
       <input type="text" id="busqueda" placeholder="Buscar por nombre o apellido">
@@ -114,76 +43,7 @@ body{
 
 </div>
 
-<script>
-function showRegister(){
-  document.getElementById("loginView").style.display="none";
-  document.getElementById("registerView").style.display="block";
-}
-
-function showLogin(){
-  document.getElementById("registerView").style.display="none";
-  document.getElementById("loginView").style.display="block";
-}
-
-// REGISTRO
-function register(){
-  const user = regUser.value;
-  const pass = regPass.value;
-
-  if(!user || !pass){
-    regError.textContent="Completa todos los campos";
-    return;
-  }
-
-  let users = JSON.parse(localStorage.getItem("users")) || [];
-
-  if(users.find(u=>u.user===user)){
-    regError.textContent="Usuario ya existe";
-    return;
-  }
-
-  users.push({user,pass});
-  localStorage.setItem("users", JSON.stringify(users));
-
-  alert("Registrado correctamente");
-  showLogin();
-}
-
-// LOGIN
-function login(){
-  const user = loginUser.value;
-  const pass = loginPass.value;
-
-  let users = JSON.parse(localStorage.getItem("users")) || [];
-
-  const valid = users.find(u=>u.user===user && u.pass===pass);
-
-  if(valid){
-    localStorage.setItem("session", user);
-    showApp();
-  }else{
-    loginError.textContent="Datos incorrectos";
-  }
-}
-
-// MOSTRAR APP
-function showApp(){
-  document.getElementById("auth").style.display="none";
-  document.getElementById("app").style.display="flex";
-}
-
-// LOGOUT
-function logout(){
-  localStorage.removeItem("session");
-  location.reload();
-}
-
-// SESION ACTIVA
-if(localStorage.getItem("session")){
-  showApp();
-}
-</script>
-
+<!-- IMPORTANTE: type=module -->
 <script type="module" src="app.js"></script>
 
 </body>
