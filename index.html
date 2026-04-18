@@ -7,14 +7,25 @@
 </head>
 <body>
 
-  
+<!-- LOGIN -->
+<div id="loginContainer" class="login">
+  <h2>🔐 Iniciar Sesión</h2>
+  <form id="loginForm">
+    <input type="text" id="usuario" placeholder="Usuario" required>
+    <input type="password" id="password" placeholder="Contraseña" required>
+    <button type="submit">Ingresar</button>
+  </form>
+  <p id="error" style="color:red;"></p>
+</div>
 
-<div class="app">
+<!-- APP (oculta al inicio) -->
+<div class="app" id="app" style="display:none;">
 
   <aside class="sidebar">
     <h2>📒 Agenda</h2>
     <button id="btnRegistro">➕ Registrar</button>
     <button id="btnAdmin">📋 Administrar</button>
+    <button id="logout">🚪 Cerrar sesión</button>
   </aside>
 
   <main class="contenido">
@@ -43,7 +54,45 @@
 
 </div>
 
-<!-- IMPORTANTE: type=module -->
+<script>
+  const loginForm = document.getElementById("loginForm");
+  const app = document.getElementById("app");
+  const loginContainer = document.getElementById("loginContainer");
+  const error = document.getElementById("error");
+
+  // Usuario de prueba (puedes cambiarlo)
+  const USER = "admin";
+  const PASS = "1234";
+
+  loginForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const usuario = document.getElementById("usuario").value;
+    const password = document.getElementById("password").value;
+
+    if (usuario === USER && password === PASS) {
+      loginContainer.style.display = "none";
+      app.style.display = "flex";
+      localStorage.setItem("sesion", "activa");
+    } else {
+      error.textContent = "Usuario o contraseña incorrectos";
+    }
+  });
+
+  // Mantener sesión
+  if (localStorage.getItem("sesion") === "activa") {
+    loginContainer.style.display = "none";
+    app.style.display = "flex";
+  }
+
+  // Cerrar sesión
+  document.getElementById("logout").addEventListener("click", () => {
+    localStorage.removeItem("sesion");
+    location.reload();
+  });
+</script>
+
+<!-- Tu lógica principal -->
 <script type="module" src="app.js"></script>
 
 </body>
