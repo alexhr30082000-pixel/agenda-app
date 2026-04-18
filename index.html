@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Agenda de Contactos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+
+  <aside class="sidebar">
+    <h2>📒 Agenda</h2>
+    <button id="btnRegistro">➕ Registrar</button>
+    <button id="btnAdmin">📋 Administrar</button>
+  </aside>
+
+  <main class="contenido">
+
+    <!-- REGISTRO -->
+    <section id="registro" class="seccion activa">
+      <h2>Registrar Contacto</h2>
+
+      <form id="formulario">
+        <input type="text" id="nombre" placeholder="Nombre completo" required>
+        <input type="text" id="telefono" placeholder="Teléfono" required>
+        <input type="email" id="correo" placeholder="Correo" required>
+        <input type="text" id="direccion" placeholder="Dirección" required>
+        <button type="submit">Guardar</button>
+      </form>
+    </section>
+
+    <!-- ADMIN -->
+    <section id="admin" class="seccion">
+      <h2>Administrar Contactos</h2>
+      <input type="text" id="busqueda" placeholder="Buscar por nombre o apellido">
+      <div id="lista"></div>
+    </section>
+
+  </main>
+
+</div>
+
+<!-- IMPORTANTE: type=module -->
+<script type="module" src="app.js"></script>
+
+</body>
+</html>
