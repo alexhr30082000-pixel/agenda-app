@@ -6,7 +6,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
 
   // Your web app's Firebase configuration
-  const firebaseConfig = {
+ const firebaseConfig = {
   apiKey: "AIzaSyDAtV-CYy3y5gUFD7ZCwy6Gg4QjE69BRNg",
   authDomain: "contactos-94dcc.firebaseapp.com",
   projectId: "contactos-94dcc",
