@@ -1,60 +1,52 @@
 body {
-  margin: 0;
   font-family: Arial;
-  background: #f5f6fa;
+  margin: 0;
 }
 
-.app {
+/* LOGIN */
+.login-body {
   display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
+  background: #0f172a;
 }
 
-.sidebar {
-  width: 220px;
-  background: #2f3640;
+.login-container {
+  background: #1e293b;
+  padding: 30px;
+  border-radius: 15px;
+  width: 300px;
+  text-align: center;
   color: white;
-  padding: 20px;
 }
 
-.sidebar button {
+.login-container input {
   width: 100%;
   margin: 10px 0;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+}
+
+.login-container button {
+  width: 100%;
+  margin-top: 10px;
   padding: 10px;
   border: none;
-  background: #40739e;
+  background: #3b82f6;
   color: white;
+  border-radius: 8px;
   cursor: pointer;
-  border-radius: 5px;
 }
 
-.contenido {
-  flex: 1;
-  padding: 20px;
-}
-
-.seccion {
-  display: none;
-}
-
-.activa {
-  display: block;
-}
-
-input {
-  display: block;
-  width: 100%;
-  margin: 10px 0;
+/* LOGOUT */
+.logout {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: red;
+  color: white;
   padding: 10px;
-}
-
-button {
-  padding: 10px;
-}
-
-.contacto {
-  background: white;
-  padding: 15px;
-  margin: 10px 0;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border: none;
 }
